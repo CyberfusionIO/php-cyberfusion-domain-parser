@@ -25,7 +25,7 @@ class ParsedDomain
 
     public function hasSubdomain(): bool
     {
-        return !empty($this->subdomain);
+        return ! empty($this->subdomain);
     }
 
     public function getRegistrableDomain(): string
@@ -40,7 +40,7 @@ class ParsedDomain
 
     public function getFqdn(): string
     {
-        if (!$this->hasSubdomain()) {
+        if (! $this->hasSubdomain()) {
             return $this->getRegistrableDomain();
         }
 
@@ -49,6 +49,6 @@ class ParsedDomain
 
     public function isApexDomain(): bool
     {
-        return !$this->hasSubdomain();
+        return ! $this->hasSubdomain();
     }
 }

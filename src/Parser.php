@@ -17,7 +17,9 @@ use Throwable;
 class Parser
 {
     private const PUBLIC_SUFFIX_LIST_SOURCE = 'https://publicsuffix.org/list/public_suffix_list.dat';
+
     private const PUBLIC_SUFFIX_LIST_CACHE_KEY = 'public-suffix-list';
+
     private const PUBLIC_SUFFIX_LIST_CACHE_TTL = 7 * 86400;
 
     private File|AdapterInterface|CacheInterface $cache;
@@ -45,7 +47,7 @@ class Parser
             );
         }
 
-        return (string)$response->getBody();
+        return (string) $response->getBody();
     }
 
     /**

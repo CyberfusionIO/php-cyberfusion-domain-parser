@@ -1,8 +1,10 @@
-# Domain-parser
+# domain-parser
 
-Package for parsing domains.
+PHP library to parse domains.
 
-## Usage
+# Usage
+
+## Example
 
 ```php
 $parser = new Parser();

@@ -9,18 +9,18 @@ use Desarrolla2\Cache\Adapter\File;
 use GuzzleHttp\Client;
 use Pdp\CannotProcessHost;
 use Pdp\Domain;
-use Pdp\Rules;
-use Pdp\UnableToLoadPublicSuffixList;
+use Pdp\TopLevelDomains;
+use Pdp\UnableToLoadTopLevelDomainList;
 use Psr\SimpleCache\CacheInterface;
 use Throwable;
 
 class Parser
 {
-    private const PUBLIC_SUFFIX_LIST_SOURCE = 'https://publicsuffix.org/list/public_suffix_list.dat';
+    private const IANA_LIST_SOURCE = 'https://data.iana.org/TLD/tlds-alpha-by-domain.txt';
 
-    private const PUBLIC_SUFFIX_LIST_CACHE_KEY = 'public-suffix-list';
+    private const IANA_CACHE_KEY = 'iana';
 
-    private const PUBLIC_SUFFIX_LIST_CACHE_TTL = 7 * 86400;
+    private const IANA_CACHE_TTL = 86400; // Daily
 
     private File|AdapterInterface|CacheInterface $cache;
 
@@ -32,16 +32,16 @@ class Parser
     /**
      * @throws DomainParserException
      */
-    private function retrieveSuffixListContent(): string
+    private function retrieveTopLevelDomainList(): string
     {
         $client = new Client([
             'connect_timeout' => 10,
             'timeout' => 30,
         ]);
         try {
-            $response = $client->get(self::PUBLIC_SUFFIX_LIST_SOURCE);
+            $response = $client->get(self::IANA_LIST_SOURCE);
         } catch (Throwable $exception) {
-            throw DomainParserException::unableToLoadSuffixList(
+            throw DomainParserException::unableToLoadTopLevelDomainList(
                 error: $exception->getMessage(),
                 previous: $exception,
             );
@@ -53,22 +53,22 @@ class Parser
     /**
      * @throws DomainParserException
      */
-    private function getSuffixListContent(): string
+    private function getTopLevelDomainList(): string
     {
         try {
-            if ($this->cache->has(self::PUBLIC_SUFFIX_LIST_CACHE_KEY)) {
-                return $this->cache->get(self::PUBLIC_SUFFIX_LIST_CACHE_KEY);
+            if ($this->cache->has(self::IANA_CACHE_KEY)) {
+                return $this->cache->get(self::IANA_CACHE_KEY);
             }
 
             $this->cache->set(
-                key: self::PUBLIC_SUFFIX_LIST_CACHE_KEY,
-                value: $this->retrieveSuffixListContent(),
-                ttl: self::PUBLIC_SUFFIX_LIST_CACHE_TTL,
+                key: self::IANA_CACHE_KEY,
+                value: $this->retrieveTopLevelDomainList(),
+                ttl: self::IANA_CACHE_TTL,
             );
 
-            return $this->cache->get(self::PUBLIC_SUFFIX_LIST_CACHE_KEY);
+            return $this->cache->get(self::IANA_CACHE_KEY);
         } catch (Throwable $exception) {
-            throw DomainParserException::unableToLoadSuffixList(
+            throw DomainParserException::unableToLoadTopLevelDomainList(
                 error: $exception->getMessage(),
                 previous: $exception,
             );
@@ -80,19 +80,19 @@ class Parser
      */
     public function domain(string $domainName): ParsedDomain
     {
-        $publicSuffixList = $this->getSuffixListContent();
+        $publicSuffixList = $this->getTopLevelDomainList();
 
         try {
-            $rules = Rules::fromString($publicSuffixList);
-        } catch (UnableToLoadPublicSuffixList $exception) {
-            throw DomainParserException::invalidSuffixList(
+            $topLevelDomains = TopLevelDomains::fromString($publicSuffixList);
+        } catch (UnableToLoadTopLevelDomainList $exception) {
+            throw DomainParserException::invalidTopLevelDomainList(
                 error: $exception->getMessage(),
                 previous: $exception
             );
         }
 
         try {
-            $domainData = $rules->resolve(Domain::fromIDNA2008($domainName));
+            $domainData = $topLevelDomains->resolve(Domain::fromIDNA2008($domainName));
         } catch (CannotProcessHost $exception) {
             throw DomainParserException::unableToParseDomain(
                 domainName: $domainName,

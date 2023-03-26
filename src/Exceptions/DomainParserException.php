@@ -7,18 +7,18 @@ use Throwable;
 
 class DomainParserException extends Exception
 {
-    public static function unableToLoadSuffixList(string $error, Throwable $previous = null): self
+    public static function unableToLoadTopLevelDomainList(string $error, Throwable $previous = null): self
     {
         return new self(
-            message: sprintf('Unable to load the suffix list, error: `%s`', $error),
+            message: sprintf('Unable to load the top level domain list, error: `%s`', $error),
             previous: $previous,
         );
     }
 
-    public static function invalidSuffixList(string $error, Throwable $previous = null): self
+    public static function invalidTopLevelDomainList(string $error, Throwable $previous = null): self
     {
         return new self(
-            message: sprintf('The provided suffix list is invalid, error: `%s`', $error),
+            message: sprintf('The provided top level domain list is invalid, error: `%s`', $error),
             previous: $previous,
         );
     }

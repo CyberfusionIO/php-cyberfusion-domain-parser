@@ -1,0 +1,38 @@
+{
+    "name": "cyberfusion/domain-parser",
+    "license": "proprietary",
+    "description": "Helper for parsing domains",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Dick van der Heiden",
+            "email": "dvanderheiden@cyberfusion.nl"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.1",
+        "desarrolla2/cache": "^2.1",
+        "guzzlehttp/guzzle": "^7.5",
+        "illuminate/support": "^10.4",
+        "jeremykendall/php-domain-parser": "^6.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.7",
+        "phpstan/phpstan": "^1.2",
+        "phpunit/phpunit": "^10.0"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Cyberfusion\\DomainParser\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Cyberfusion\\DomainParser\\Tests\\": "tests/"
+        }
+    }
+}

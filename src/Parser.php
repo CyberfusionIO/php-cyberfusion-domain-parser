@@ -2,6 +2,7 @@
 
 namespace Cyberfusion\DomainParser;
 
+use Cyberfusion\DomainParser\Contracts\DomainParser;
 use Cyberfusion\DomainParser\Data\ParsedDomain;
 use Cyberfusion\DomainParser\Exceptions\DomainParserException;
 use Desarrolla2\Cache\Adapter\AdapterInterface;
@@ -14,7 +15,7 @@ use Pdp\UnableToLoadTopLevelDomainList;
 use Psr\SimpleCache\CacheInterface;
 use Throwable;
 
-class Parser
+class Parser implements DomainParser
 {
     private const IANA_LIST_SOURCE = 'https://data.iana.org/TLD/tlds-alpha-by-domain.txt';
 

@@ -93,7 +93,7 @@ class Parser implements DomainParser
         }
 
         try {
-            $domainData = $topLevelDomains->resolve(Domain::fromIDNA2008($domainName));
+            $domainData = $topLevelDomains->getIANADomain(Domain::fromIDNA2008($domainName));
         } catch (CannotProcessHost $exception) {
             throw DomainParserException::unableToParseDomain(
                 domainName: $domainName,

@@ -28,6 +28,22 @@ class ParserPSLTest extends TestCase
         $this->assertSame('cyberfusion', $parsedDomain->getSld());
         $this->assertSame('nl', $parsedDomain->getTld());
         $this->assertSame('cyberfusion.nl', $parsedDomain->getFqdn());
+        $this->assertNull($parsedDomain->getSubdomain());
+        $this->assertFalse($parsedDomain->hasSubdomain());
+    }
+
+    public function testParserWithoutSubdomainWithDoubleTLD(): void
+    {
+        $parsedDomain = $this
+            ->parser
+            ->domain('cyberfusion.co.uk');
+
+        $this->assertSame('cyberfusion.co.uk', $parsedDomain->getRegistrableDomain());
+        $this->assertSame('cyberfusion', $parsedDomain->getSld());
+        $this->assertSame('co.uk', $parsedDomain->getTld());
+        $this->assertSame('cyberfusion.co.uk', $parsedDomain->getFqdn());
+        $this->assertNull($parsedDomain->getSubdomain());
+        $this->assertFalse($parsedDomain->hasSubdomain());
     }
 
     public function testParserWithSubdomain(): void
@@ -40,6 +56,22 @@ class ParserPSLTest extends TestCase
         $this->assertSame('cyberfusion', $parsedDomain->getSld());
         $this->assertSame('nl', $parsedDomain->getTld());
         $this->assertSame('cluster.lord.cyberfusion.nl', $parsedDomain->getFqdn());
+        $this->assertSame('cluster.lord', $parsedDomain->getSubdomain());
+        $this->assertTrue($parsedDomain->hasSubdomain());
+    }
+
+    public function testParserWithSubdomainWithDoubleTLD(): void
+    {
+        $parsedDomain = $this
+            ->parser
+            ->domain('cluster.lord.cyberfusion.co.uk');
+
+        $this->assertSame('cyberfusion.co.uk', $parsedDomain->getRegistrableDomain());
+        $this->assertSame('cyberfusion', $parsedDomain->getSld());
+        $this->assertSame('co.uk', $parsedDomain->getTld());
+        $this->assertSame('cluster.lord.cyberfusion.co.uk', $parsedDomain->getFqdn());
+        $this->assertSame('cluster.lord', $parsedDomain->getSubdomain());
+        $this->assertTrue($parsedDomain->hasSubdomain());
     }
 
     public function testParserWithInvalidDomain(): void

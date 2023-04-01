@@ -115,16 +115,22 @@ class Parser implements DomainParser
             );
         }
 
+        $registrableDomain = $domainData
+            ->registrableDomain()
+            ->toString();
+        $tld = $domainData
+            ->suffix()
+            ->toString();
+        $subdomain = $domainData
+            ->subDomain()
+            ->toString();
+
         return new ParsedDomain(
-            registrableDomain: $domainData
-                ->registrableDomain()
-                ->toString(),
-            tld: $domainData
-                ->suffix()
-                ->toString(),
-            subdomain: $domainData
-                ->subDomain()
-                ->toString()
+            registrableDomain: $registrableDomain,
+            tld: $tld,
+            subdomain: empty($subdomain)
+                ? null
+                : $subdomain,
         );
     }
 }

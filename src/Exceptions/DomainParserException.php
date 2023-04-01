@@ -7,7 +7,7 @@ use Throwable;
 
 class DomainParserException extends Exception
 {
-    public static function unableToLoadTopLevelDomainList(string $error, Throwable $previous = null): self
+    public static function unableToLoadSourceList(string $error, Throwable $previous = null): self
     {
         return new self(
             message: sprintf('Unable to load the top level domain list, error: `%s`', $error),
@@ -15,7 +15,7 @@ class DomainParserException extends Exception
         );
     }
 
-    public static function invalidTopLevelDomainList(string $error, Throwable $previous = null): self
+    public static function invalidSourceList(string $error, Throwable $previous = null): self
     {
         return new self(
             message: sprintf('The provided top level domain list is invalid, error: `%s`', $error),

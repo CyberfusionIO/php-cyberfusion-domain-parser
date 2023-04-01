@@ -4,9 +4,10 @@ namespace Cyberfusion\DomainParser\Tests;
 
 use Cyberfusion\DomainParser\Exceptions\DomainParserException;
 use Cyberfusion\DomainParser\Parser;
+use Cyberfusion\DomainParser\Providers\IANATopLevelDomainList;
 use PHPUnit\Framework\TestCase;
 
-class ParserTest extends TestCase
+class ParserIANATest extends TestCase
 {
     private Parser $parser;
 
@@ -14,7 +15,7 @@ class ParserTest extends TestCase
     {
         parent::setUp();
 
-        $this->parser = new Parser();
+        $this->parser = new Parser(provider: new IANATopLevelDomainList());
     }
 
     public function testParserWithoutSubdomain(): void

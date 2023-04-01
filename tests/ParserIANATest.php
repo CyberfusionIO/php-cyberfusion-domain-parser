@@ -28,6 +28,8 @@ class ParserIANATest extends TestCase
         $this->assertSame('cyberfusion', $parsedDomain->getSld());
         $this->assertSame('nl', $parsedDomain->getTld());
         $this->assertSame('cyberfusion.nl', $parsedDomain->getFqdn());
+        $this->assertNull($parsedDomain->getSubdomain());
+        $this->assertFalse($parsedDomain->hasSubdomain());
     }
 
     public function testParserWithSubdomain(): void
@@ -40,6 +42,8 @@ class ParserIANATest extends TestCase
         $this->assertSame('cyberfusion', $parsedDomain->getSld());
         $this->assertSame('nl', $parsedDomain->getTld());
         $this->assertSame('cluster.lord.cyberfusion.nl', $parsedDomain->getFqdn());
+        $this->assertSame('cluster.lord', $parsedDomain->getSubdomain());
+        $this->assertTrue($parsedDomain->hasSubdomain());
     }
 
     public function testParserWithInvalidDomain(): void

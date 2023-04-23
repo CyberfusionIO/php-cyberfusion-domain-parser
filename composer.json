@@ -1,7 +1,7 @@
 {
     "name": "cyberfusion/domain-parser",
     "license": "proprietary",
-    "description": "Helper for parsing domains",
+    "description": "Library for domain parsing",
     "type": "library",
     "authors": [
         {

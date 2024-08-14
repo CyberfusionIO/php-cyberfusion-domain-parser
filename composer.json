@@ -12,7 +12,7 @@
     "minimum-stability": "stable",
     "require": {
         "php": "^8.3",
-        "desarrolla2/cache": "^2.1",
+        "desarrolla2/cache": "^3.0",
         "guzzlehttp/guzzle": "^7.5",
         "illuminate/support": "^10.4|^11.0",
         "jeremykendall/php-domain-parser": "^6.0"

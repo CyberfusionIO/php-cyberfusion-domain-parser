@@ -8,8 +8,7 @@ use Cyberfusion\DomainParser\Data\ParsedDomain;
 use Cyberfusion\DomainParser\Exceptions\DomainParserException;
 use Cyberfusion\DomainParser\Providers\IANATopLevelDomainList;
 use Cyberfusion\DomainParser\Providers\PublicSuffixList;
-use Desarrolla2\Cache\Adapter\AdapterInterface;
-use Desarrolla2\Cache\Adapter\File;
+use Desarrolla2\Cache\File;
 use GuzzleHttp\Client;
 use Pdp\CannotProcessHost;
 use Pdp\Domain;
@@ -24,7 +23,7 @@ use Throwable;
 class Parser implements DomainParser
 {
     public function __construct(
-        private CacheInterface|AdapterInterface|null $cache = null,
+        private CacheInterface|null $cache = null,
         private ?Provider $provider = null,
     ) {
         if ($this->cache === null) {

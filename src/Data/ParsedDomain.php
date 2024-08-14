@@ -9,7 +9,7 @@ class ParsedDomain
     public function __construct(
         private readonly string $registrableDomain,
         private readonly string $tld,
-        private readonly ?string $subdomain = null
+        private readonly ?string $subdomain = null,
     ) {
     }
 

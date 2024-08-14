@@ -25,7 +25,7 @@ class Parser implements DomainParser
 {
     public function __construct(
         private CacheInterface|AdapterInterface|null $cache = null,
-        private ?Provider $provider = null
+        private ?Provider $provider = null,
     ) {
         if ($this->cache === null) {
             $this->cache = new File(__DIR__);
@@ -97,7 +97,7 @@ class Parser implements DomainParser
         } catch (UnableToLoadTopLevelDomainList|UnableToLoadPublicSuffixList $exception) {
             throw DomainParserException::invalidSourceList(
                 error: $exception->getMessage(),
-                previous: $exception
+                previous: $exception,
             );
         }
 
@@ -111,7 +111,7 @@ class Parser implements DomainParser
             throw DomainParserException::unableToParseDomain(
                 domainName: $domainName,
                 error: $exception->getMessage(),
-                previous: $exception
+                previous: $exception,
             );
         }
 

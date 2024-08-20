@@ -37,7 +37,7 @@ class Parser implements DomainParser
     /**
      * @throws DomainParserException
      */
-    private function retrieveTopLevelDomainList(): string
+    private function retrieveProviderData(): string
     {
         $client = new Client([
             'connect_timeout' => 10,
@@ -69,7 +69,7 @@ class Parser implements DomainParser
 
             $this->cache->set(
                 key: $cacheKey,
-                value: $this->retrieveTopLevelDomainList(),
+                value: $this->retrieveProviderData(),
                 ttl: $this->provider->ttl(),
             );
 

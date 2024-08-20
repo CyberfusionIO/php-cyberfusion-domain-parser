@@ -1,12 +1,13 @@
 {
     "name": "cyberfusion/domain-parser",
-    "license": "proprietary",
+    "license": "MIT",
     "description": "Library for domain parsing",
     "type": "library",
     "authors": [
         {
             "name": "Dick van der Heiden",
-            "email": "dvanderheiden@cyberfusion.nl"
+            "email": "dick@goedemiddag.nl",
+            "role": "developer"
         }
     ],
     "minimum-stability": "stable",

@@ -43,5 +43,7 @@
         "analyze": "vendor/bin/phpstan analyse",
         "lint:check": "vendor/bin/ecs",
         "lint:fix": "vendor/bin/ecs --fix"
-    }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }

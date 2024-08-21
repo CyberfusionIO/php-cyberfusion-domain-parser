@@ -3,13 +3,10 @@
     "license": "MIT",
     "description": "Library to parse domains into their subdomain, SLD, TLD, and registrable domain.",
     "type": "library",
-    "authors": [
-        {
-            "name": "Dick van der Heiden",
-            "email": "dick@goedemiddag.nl",
-            "role": "developer"
-        }
-    ],
+    "support": {
+        "security": "https://cyberfusion.io/content/responsible-disclosure-policy",
+        "email": "support@cyberfusion.io"
+    },
     "minimum-stability": "stable",
     "require": {
         "php": "^8.3",

@@ -57,3 +57,4 @@ $parser = new Parser(
     provider: new PublicSuffixList()
 );
 ```
+

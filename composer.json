@@ -1,13 +1,12 @@
 {
     "name": "cyberfusion/domain-parser",
-    "license": "MIT",
     "description": "Library to parse domains into their subdomain, SLD, TLD, and registrable domain.",
     "type": "library",
+    "license": "MIT",
     "support": {
         "security": "https://cyberfusion.io/content/responsible-disclosure-policy",
         "email": "support@cyberfusion.io"
     },
-    "minimum-stability": "stable",
     "require": {
         "php": "^8.3",
         "desarrolla2/cache": "^3.0",
@@ -23,6 +22,16 @@
     "config": {
         "sort-packages": true
     },
+    "autoload": {
+        "psr-4": {
+            "Cyberfusion\\DomainParser\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Cyberfusion\\DomainParser\\Tests\\": "tests/"
+        }
+    },
     "scripts": {
         "test": [
             "@analyze",
@@ -34,15 +43,5 @@
         "analyze": "vendor/bin/phpstan analyse",
         "lint:check": "vendor/bin/ecs",
         "lint:fix": "vendor/bin/ecs --fix"
-    },
-    "autoload": {
-        "psr-4": {
-            "Cyberfusion\\DomainParser\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Cyberfusion\\DomainParser\\Tests\\": "tests/"
-        }
     }
 }

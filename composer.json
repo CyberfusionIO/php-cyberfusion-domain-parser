@@ -1,7 +1,7 @@
 {
     "name": "cyberfusion/domain-parser",
     "license": "MIT",
-    "description": "Library for domain parsing",
+    "description": "Library to parse domains into their subdomain, SLD, TLD, and registrable domain.",
     "type": "library",
     "authors": [
         {

@@ -4,11 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). 
 
-## [1.6.0]
+## [1.7.0]
 
 ### Changed
 
 - Improve implementation of the `jeremykendall/php-domain-parser` package to solve specific cases like `cyberfusion.co.no`.
+
+## [1.6.0]
+
+### Added
+
+- Add support for Laravel 12.
 
 ## [1.5.0]
 
